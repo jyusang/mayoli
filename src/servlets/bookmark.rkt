@@ -34,7 +34,7 @@
 
 (define (handle-post req)
   (add-bookmark (extract-binding/single 'url (request-bindings req)))
-  (response/xexpr "OK"))
+  (response/xexpr "{}"))
 
 (define (start req)
   (match (request-method req)
