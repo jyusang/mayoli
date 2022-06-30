@@ -6,6 +6,8 @@
          web-server/servlet
          web-server/servlet-env)
 
+(require "../utils/url.rkt")
+
 (define db (sqlite3-connect #:database (getenv "SQLITE_DB_PATH")))
 
 (struct bookmark (id url timestamp))
@@ -19,7 +21,9 @@
 
 (define (render-bookmark a-bookmark)
   (define url (bookmark-url a-bookmark))
-  `(a ((href ,url)) ,url))
+  (if (validate-url url)
+      `(a ((href ,url)) ,url)
+      `(span ,url)))
 
 (define (render-list items render-item)
   `(ul ,@(map (lambda (item) `(li ,(render-item item))) items)))
