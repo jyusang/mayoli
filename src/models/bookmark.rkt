@@ -1,6 +1,8 @@
 #lang racket
 
-(require db)
+(require db
+         net/url
+         net/url-structs)
 
 (define db (sqlite3-connect #:database (getenv "SQLITE_DB_PATH")))
 
@@ -9,6 +11,9 @@
 
 (struct bookmark
   (id url title?))
+
+(define (bookmark-host b)
+  (url-host (string->url (bookmark-url b))))
 
 (define (bookmark-title b)
   (let ([title? (bookmark-title? b)])
@@ -44,6 +49,7 @@
   (query-exec db sql title id))
 
 (provide (struct-out bookmark)
+         bookmark-host
          bookmark-title
          select-bookmarks
          insert-bookmark
