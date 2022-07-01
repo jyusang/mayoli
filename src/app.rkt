@@ -8,8 +8,7 @@
 (define start
   (dispatch-case
    [("api" "bookmarks") #:method "post" handle-post-api-bookmarks]
-   [("bookmarks") #:method "get" handle-get-bookmarks]
-   [else (lambda (req) (response/empty))]))
+   [("bookmarks") #:method "get" handle-get-bookmarks]))
 
 (define extra-files-paths
   (list (build-path "src/htdocs")))

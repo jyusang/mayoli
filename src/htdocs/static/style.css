@@ -1,0 +1,70 @@
+body {
+  font-family: monospace;
+}
+a {
+  color: black;
+  text-decoration-line: none;
+}
+a:link:hover {
+  text-decoration-line: underline;
+}
+
+.fh {
+  gap: 0.25rem;
+  display: flex;
+  flex-direction: row;
+}
+.fv {
+  display: flex;
+  flex-direction: column;
+}
+.fs {
+  align-items: flex-start;
+}
+.fc {
+  align-items: center;
+}
+.fe {
+  align-items: flex-end;
+}
+
+.w {
+  margin: 0 auto;
+  max-width: 40rem;
+}
+.m {
+  margin: 0.25rem;
+}
+.p {
+  padding: 0.25rem;
+}
+
+.bg {
+  background-color: cornsilk;
+}
+.bg-d {
+  background-color: coral;
+}
+
+.oh {
+  opacity: 0.6;
+}
+.ohh {
+  opacity: 0.3;
+}
+.ohno {
+  opacity: 0;
+}
+
+.b {
+  font-weight: bold;
+}
+.i {
+  font-style: italic;
+}
+.l {
+  font-size: 1.1rem;
+}
+.s {
+  font-size: 0.6rem;
+}

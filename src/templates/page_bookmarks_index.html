@@ -1,23 +1,28 @@
 <html>
   <head>
     <title>@|head-title|</title>
-    @|(include-template "base_common_head_tags.html")|
+    @|(include-template "comp_basic_head_tags.html")|
   </head>
-  <body>
-    <ol>
-      @in[b bookmarks]{
-      <li>
-        <div>
-          <a>@|(bookmark-title b)|</a>
-          <span>@|(bookmark-url b)|</span>
+  <body class="m p">
+    <div class="w">
+      @|(include-template "comp_nav.html")|
+      <div class="bg p">
+        <div class="p"></div>
+        @in[b bookmarks]{
+        <div class="fh fc">
+          <span class="oh">@|(bookmark-id b)|. </span>
+          <a class="" href="@|(bookmark-url b)|">@|(bookmark-title b)|</a>
+          <span class="oh s"> (@|(bookmark-url b)|)</span>
         </div>
-        <div>
-          <a>update</a>
-          |
-          <a>delete</a>
+        <div class="fh fc">
+          <span class="ohno">@|(bookmark-id b)|. </span>
+          <a class="oh s">update</a>
+          <span class="oh"> | </span>
+          <a class="oh s">delete</a>
         </div>
-      </li>
-      }
-    </ol>
+        <div class="p"></div>
+        }
+      </div>
+    </div>
   </body>
 </html>
