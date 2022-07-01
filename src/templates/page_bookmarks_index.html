@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>@|head-title|</title>
+    @|(include-template "base_common_head_tags.html")|
+  </head>
+  <body>
+    <ol>
+      @in[b bookmarks]{
+      <li>
+        <div>
+          <a>@|(bookmark-title b)|</a>
+          <span>@|(bookmark-url b)|</span>
+        </div>
+        <div>
+          <a>update</a>
+          |
+          <a>delete</a>
+        </div>
+      </li>
+      }
+    </ol>
+  </body>
+</html>
