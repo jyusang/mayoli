@@ -8,7 +8,9 @@
 (define start
   (dispatch-case
    [("api" "bookmarks") #:method "post" handle-post-api-bookmarks]
-   [("bookmarks") #:method "get" handle-get-bookmarks]))
+   [("bookmarks") #:method "get" handle-get-bookmarks]
+   [("bookmarks" "submit") #:method "get" handle-get-bookmarks-submit]
+   [("bookmarks" "submit") #:method "post" handle-post-bookmarks-submit]))
 
 (define extra-files-paths
   (list (build-path "src/htdocs")))

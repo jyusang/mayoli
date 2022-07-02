@@ -1,0 +1,22 @@
+<html>
+  <head>
+    <title>@|head-title|</title>
+    @|(include-template "comp_basic_head_tags.html")|
+  </head>
+  <body class="m p">
+    <div class="w">
+      @|(include-template "comp_nav.html")|
+      <div class="bg p">
+        <form method="post">
+          <div class="p">
+            <label for="url">url: </label>
+            <input type="text" id="url" name="url" />
+          </div>
+          <div class="p">
+            <button type="submit">submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
