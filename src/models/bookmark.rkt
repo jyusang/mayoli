@@ -4,13 +4,12 @@
          net/url
          net/url-structs)
 
+(require "../utils/datetime.rkt")
+
 (define db (sqlite3-connect #:database (getenv "SQLITE_DB_PATH")))
 
-(struct raw-bookmark
-  (id url title? created_at updated_at deleted_at))
-
 (struct bookmark
-  (id url title?))
+  (id url title? created_at updated_at deleted_at))
 
 (define (bookmark-host b)
   (url-host (string->url (bookmark-url b))))
@@ -27,11 +26,19 @@
 
 (define (select-bookmarks)
   (define sql "
-    SELECT id, url, title
+    SELECT id, url, title, created_at, updated_at, deleted_at
     FROM bookmarks
     ORDER BY created_at DESC
     ")
   (map parse-bookmark (query-rows db sql)))
+
+(define (select-bookmark-by-id id)
+  (define sql "
+    SELECT id, url, title, created_at, updated_at, deleted_at
+    FROM bookmarks
+    WHERE id = ?
+    ")
+  (parse-bookmark (query-row db sql id)))
 
 (define (insert-bookmark url)
   (define sql "
@@ -52,5 +59,6 @@
          bookmark-host
          bookmark-title
          select-bookmarks
+         select-bookmark-by-id
          insert-bookmark
          update-bookmark-title)

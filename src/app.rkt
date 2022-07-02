@@ -9,6 +9,7 @@
   (dispatch-case
    [("api" "bookmarks") #:method "post" handle-post-api-bookmarks]
    [("bookmarks") #:method "get" handle-get-bookmarks]
+   [("bookmarks" (integer-arg) "edit") #:method "get" handle-get-bookmarks-id-edit]
    [("bookmarks" "submit") #:method "get" handle-get-bookmarks-submit]
    [("bookmarks" "submit") #:method "post" handle-post-bookmarks-submit]))
 

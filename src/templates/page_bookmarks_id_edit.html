@@ -8,7 +8,6 @@
       @|(include-template "comp_nav.html")|
       <div class="bg p">
         <div class="p"></div>
-        @in[bookmark bookmarks]{
         <div class="fh fc">
           <span class="oh">@|(bookmark-id bookmark)|. </span>
           <a class="" href="@|(bookmark-url bookmark)|"
@@ -26,13 +25,35 @@
           >
           <span class="oh"> | </span>
           <a class="oh s">delete</a>
+          <span class="oh"> | </span>
+          <a class="oh s r">delete!</a>
         </div>
         <div class="p"></div>
-        }
-        <!-- Empty state -->
-        @when[(empty? bookmarks)]{
-        <div class="oh">empty</div>
-        }
+        <form method="post">
+          <div class="p">
+            <label for="url">url: </label>
+            <input
+              type="text"
+              value="@|(bookmark-url bookmark)|"
+              id="url"
+              name="url-disabled"
+              disabled
+            />
+          </div>
+          <div class="p">
+            <label for="title">title: </label>
+            <input
+              type="text"
+              value="@|(bookmark-title bookmark)|"
+              id="title"
+              name="title-disabled"
+              disabled
+            />
+          </div>
+          <div class="p">
+            <button type="submit" disabled>submit</button>
+          </div>
+        </form>
       </div>
     </div>
   </body>
