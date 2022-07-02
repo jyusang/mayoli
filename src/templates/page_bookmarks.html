@@ -10,7 +10,9 @@
         <div class="p"></div>
         @in[bookmark bookmarks]{
         @|(include-template "./comp_bookmark_primary_row.html")|
-        @|(let ([allow-permanent-delete? #f]) (include-template "./comp_bookmark_secondary_row.html"))|
+        @|(let ([allow-refresh? #f]
+                [allow-permanent-delete? #f])
+            (include-template "./comp_bookmark_secondary_row.html"))|
         <div class="p"></div>
         }
         @when[(empty? bookmarks)]{

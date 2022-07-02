@@ -33,6 +33,12 @@
     (response/output
      (lambda (op) (display (include-template "../templates/page_bookmarks_id_edit.html") op)))))
 
+(define (handle-get-bookmarks-id-refresh req id)
+  (let* ([bookmark (select-bookmark id)]
+         [title (parse-head-title (fetch (bookmark-url bookmark)))])
+    (update-bookmark-title id title)
+    (redirect-to (format "/bookmarks/~a/edit" id))))
+
 (define (handle-get-bookmarks-id-delete req id)
   (let ([head-title "Delete | Bookmarks"]
         [bookmark (select-bookmark id)])
@@ -68,4 +74,5 @@
          handle-post-bookmarks-id-delete
          handle-get-bookmarks-id-delete!
          handle-post-bookmarks-id-delete!
+         handle-get-bookmarks-id-refresh
          handle-post-api-bookmarks)

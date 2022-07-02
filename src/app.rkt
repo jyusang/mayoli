@@ -14,6 +14,7 @@
    [("bookmarks" (integer-arg) "delete") #:method "post" handle-post-bookmarks-id-delete]
    [("bookmarks" (integer-arg) "delete!") #:method "get" handle-get-bookmarks-id-delete!]
    [("bookmarks" (integer-arg) "delete!") #:method "post" handle-post-bookmarks-id-delete!]
+   [("bookmarks" (integer-arg) "refresh") #:method "get" handle-get-bookmarks-id-refresh]
    [("bookmarks" "submit") #:method "get" handle-get-bookmarks-submit]
    [("bookmarks" "submit") #:method "post" handle-post-bookmarks-submit]))
 

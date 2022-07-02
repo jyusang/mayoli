@@ -9,7 +9,9 @@
       <div class="bg p">
         <div class="p"></div>
         @|(include-template "./comp_bookmark_primary_row.html")|
-        @|(let ([allow-permanent-delete? #t]) (include-template "./comp_bookmark_secondary_row.html"))|
+        @|(let ([allow-refresh? #t]
+                [allow-permanent-delete? #t])
+            (include-template "./comp_bookmark_secondary_row.html"))|
         <div class="p"></div>
         <form method="post">
           <div class="p">
