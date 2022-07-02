@@ -4,8 +4,6 @@
          net/url
          net/url-structs)
 
-(require "../utils/datetime.rkt")
-
 (define db (sqlite3-connect #:database (getenv "SQLITE_DB_PATH")))
 
 (struct bookmark
@@ -16,7 +14,7 @@
 
 (define (bookmark-title b)
   (let ([title? (bookmark-title? b)])
-    (if (sql-null? title?) "?" (title?))))
+    (if (sql-null? title?) "?" title?)))
 
 (define (parse-bookmark row)
   (apply bookmark (vector->list row)))
