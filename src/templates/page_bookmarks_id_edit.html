@@ -8,26 +8,8 @@
       @|(include-template "comp_nav.html")|
       <div class="bg p">
         <div class="p"></div>
-        <div class="fh fc">
-          <span class="oh">@|(bookmark-id bookmark)|. </span>
-          <a class="" href="@|(bookmark-url bookmark)|"
-            >@|(bookmark-title bookmark)|</a
-          >
-          <span class="oh s"> (@|(bookmark-host bookmark)|)</span>
-        </div>
-        <div class="fh fc">
-          <span class="ohno">@|(bookmark-id bookmark)|. </span>
-          <a
-            class="oh s"
-            title="@|(epoch->iso-8601 (bookmark-created_at bookmark))|"
-            href="/bookmarks/@|(bookmark-id bookmark)|/edit"
-            >@|(epoch->string (bookmark-created_at bookmark))|</a
-          >
-          <span class="oh"> | </span>
-          <a class="oh s">delete</a>
-          <span class="oh"> | </span>
-          <a class="oh s r">delete!</a>
-        </div>
+        @|(include-template "./comp_bookmark_primary_row.html")|
+        @|(let ([allow-permanent-delete? #t]) (include-template "./comp_bookmark_secondary_row.html"))|
         <div class="p"></div>
         <form method="post">
           <div class="p">

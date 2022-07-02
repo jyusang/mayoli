@@ -1,0 +1,23 @@
+<html>
+  <head>
+    <title>@|head-title|</title>
+    @|(include-template "comp_basic_head_tags.html")|
+  </head>
+  <body class="m p">
+    <div class="w">
+      @|(include-template "comp_nav.html")|
+      <div class="bg p">
+        <div class="p"></div>
+        @|(include-template "./comp_bookmark_primary_row.html")|
+        @|(let ([allow-permanent-delete? #t]) (include-template "./comp_bookmark_secondary_row.html"))|
+        <div class="p"></div>
+        <form method="post">
+          <div class="p">
+            <span>delete?</span>
+            <button type="submit">yes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

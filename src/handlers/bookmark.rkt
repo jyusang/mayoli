@@ -24,16 +24,40 @@
 
 (define (handle-get-bookmarks-id-edit req id)
   (let ([head-title "Edit | Bookmarks"]
-        [bookmark (select-bookmark-by-id id)])
+        [bookmark (select-bookmark id)])
     (response/output
      (lambda (op) (display (include-template "../templates/page_bookmarks_id_edit.html") op)))))
+
+(define (handle-get-bookmarks-id-delete req id)
+  (let ([head-title "Delete | Bookmarks"]
+        [bookmark (select-bookmark id)])
+    (response/output
+     (lambda (op) (display (include-template "../templates/page_bookmarks_id_delete.html") op)))))
+
+(define (handle-post-bookmarks-id-delete req id)
+  (delete-bookmark id)
+  (redirect-to "/bookmarks"))
+
+(define (handle-get-bookmarks-id-delete! req id)
+  (let ([head-title "Edit | Bookmarks"]
+        [bookmark (select-bookmark id)])
+    (response/output
+     (lambda (op) (display (include-template "../templates/page_bookmarks_id_delete.html") op)))))
+
+(define (handle-post-bookmarks-id-delete! req id)
+  (delete-bookmark! id)
+  (redirect-to "/bookmarks"))
 
 (define (handle-post-api-bookmarks req)
   (insert-bookmark (extract-binding/single 'url (request-bindings req)))
   (response/jsexpr #hasheq()))
 
 (provide handle-get-bookmarks
-         handle-get-bookmarks-id-edit
          handle-get-bookmarks-submit
          handle-post-bookmarks-submit
+         handle-get-bookmarks-id-edit
+         handle-get-bookmarks-id-delete
+         handle-post-bookmarks-id-delete
+         handle-get-bookmarks-id-delete!
+         handle-post-bookmarks-id-delete!
          handle-post-api-bookmarks)

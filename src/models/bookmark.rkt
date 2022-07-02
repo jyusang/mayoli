@@ -28,11 +28,12 @@
   (define sql "
     SELECT id, url, title, created_at, updated_at, deleted_at
     FROM bookmarks
+    WHERE deleted_at ISNULL
     ORDER BY created_at DESC
     ")
   (map parse-bookmark (query-rows db sql)))
 
-(define (select-bookmark-by-id id)
+(define (select-bookmark id)
   (define sql "
     SELECT id, url, title, created_at, updated_at, deleted_at
     FROM bookmarks
@@ -55,10 +56,27 @@
     ")
   (query-exec db sql title id))
 
+(define (delete-bookmark id)
+  (define sql "
+    UPDATE bookmarks
+    SET deleted_at = STRFTIME('%s', 'now')
+    WHERE id = ?
+    ")
+  (query-exec db sql id))
+
+(define (delete-bookmark! id)
+  (define sql "
+    DELETE FROM bookmarks
+    WHERE id = ?
+    ")
+  (query-exec db sql id))
+
 (provide (struct-out bookmark)
          bookmark-host
          bookmark-title
          select-bookmarks
-         select-bookmark-by-id
+         select-bookmark
          insert-bookmark
-         update-bookmark-title)
+         update-bookmark-title
+         delete-bookmark
+         delete-bookmark!)

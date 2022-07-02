@@ -10,6 +10,10 @@
    [("api" "bookmarks") #:method "post" handle-post-api-bookmarks]
    [("bookmarks") #:method "get" handle-get-bookmarks]
    [("bookmarks" (integer-arg) "edit") #:method "get" handle-get-bookmarks-id-edit]
+   [("bookmarks" (integer-arg) "delete") #:method "get" handle-get-bookmarks-id-delete]
+   [("bookmarks" (integer-arg) "delete") #:method "post" handle-post-bookmarks-id-delete]
+   [("bookmarks" (integer-arg) "delete!") #:method "get" handle-get-bookmarks-id-delete!]
+   [("bookmarks" (integer-arg) "delete!") #:method "post" handle-post-bookmarks-id-delete!]
    [("bookmarks" "submit") #:method "get" handle-get-bookmarks-submit]
    [("bookmarks" "submit") #:method "post" handle-post-bookmarks-submit]))
 

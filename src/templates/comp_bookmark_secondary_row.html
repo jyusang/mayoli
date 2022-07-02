@@ -1,0 +1,17 @@
+<div class="fh fc">
+  <span class="ohno">@|(bookmark-id bookmark)|. </span>
+  <a
+    class="oh s"
+    href="/bookmarks/@|(bookmark-id bookmark)|/edit"
+    title="@|(epoch->iso-8601 (bookmark-created_at bookmark))|"
+    >@|(epoch->string (bookmark-created_at bookmark))|</a
+  >
+  <span class="oh"> | </span>
+  <a class="oh s" href="/bookmarks/@|(bookmark-id bookmark)|/delete">delete</a>
+  @when[allow-permanent-delete?]{@list{
+  <span class="oh"> | </span>
+  <a class="oh s r" href="/bookmarks/@|(bookmark-id bookmark)|/delete!"
+    >delete!</a
+  >
+  }}
+</div>
