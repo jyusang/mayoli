@@ -25,6 +25,6 @@
                #:extra-files-paths extra-files-paths
                #:launch-browser? #f
                #:listen-ip #f
-               #:port (or (getenv "PORT") 8000)
+               #:port (string->number (or (getenv "PORT") "8000"))
                #:servlet-regexp #rx""
                #:stateless? #t)
