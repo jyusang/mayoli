@@ -1,12 +1,11 @@
 #lang racket
 
 (require html-parsing
+         xml
          xml/path)
 
 (define (parse-head-title s)
-  (let* ([xe (html->xexp s)]
-         [title (se-path* '(head title) xe)]
-         [maybe-title (if (string? title) title null)])
-    maybe-title))
+  (string-join (map (lambda (x) (if (string? x) (xexpr->string x) ""))
+                    (se-path*/list '(head title) (html->xexp s)))))
 
 (provide parse-head-title)
