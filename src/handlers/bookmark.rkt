@@ -5,7 +5,9 @@
          web-server/templates)
 
 (require "../models/bookmark.rkt"
-         "../utils/datetime.rkt")
+         "../utils/datetime.rkt"
+         "../utils/html.rkt"
+         "../utils/url.rkt")
 
 (define (handle-get-bookmarks req)
   (let ([head-title "Bookmarks"]
@@ -19,7 +21,10 @@
      (lambda (op) (display (include-template "../templates/page_bookmarks_submit.html") op)))))
 
 (define (handle-post-bookmarks-submit req)
-  (insert-bookmark (extract-binding/single 'url (request-bindings req)))
+  (let ([url (extract-binding/single 'url (request-bindings req))])
+    (let ([id (insert-bookmark url)]
+          [title (parse-head-title (fetch url))])
+      (update-bookmark-title id title)))
   (redirect-to "/bookmarks"))
 
 (define (handle-get-bookmarks-id-edit req id)
@@ -49,7 +54,10 @@
   (redirect-to "/bookmarks"))
 
 (define (handle-post-api-bookmarks req)
-  (insert-bookmark (extract-binding/single 'url (request-bindings req)))
+  (let ([url (extract-binding/single 'url (request-bindings req))])
+    (let ([id (insert-bookmark url)]
+          [title (parse-head-title (fetch url))])
+      (update-bookmark-title id title)))
   (response/jsexpr #hasheq()))
 
 (provide handle-get-bookmarks
