@@ -5,7 +5,7 @@ Usage: make [COMMAND]
  tables		Create an SQLite database for bookmark feature
 endef
 
-RACKET = env -S "$$(cat .env)" racket
+RACKET = env -S $$(cat .env) racket
 
 .PHONY: help
 help:
