@@ -14,7 +14,10 @@
 
 (define (bookmark-title b)
   (let ([title? (bookmark-title? b)])
-    (if (sql-null? title?) "?" title?)))
+    (cond
+      [(sql-null? title?) "(null)"]
+      [(equal? title? "") "(empty)"]
+      [else title?])))
 
 (define (parse-bookmark row)
   (apply bookmark (vector->list row)))
